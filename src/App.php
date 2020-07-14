@@ -66,8 +66,12 @@ class App
 
 		// Add the array of data
 		$row = array_merge($row, $document->data());
-		
-		return print_r($row);
+
+		// Backtrace will include the FirestoreClient in this class, which causes the failure
+		$trace  = debug_backtrace();
+		print_r($trace);
+
+		return print_r($row, true);
 	}
 
 	/**
