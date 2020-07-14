@@ -1,0 +1,20 @@
+{
+    "name": "mgatner/firebase-bug",
+    "description": "Demonstration of googleapis/google-cloud-php#2581",
+    "type": "project",
+    "authors": [
+        {
+            "name": "MGatner",
+            "email": "mgatner@icloud.com"
+        }
+    ],
+    "require": {
+        "kreait/firebase-php": "^5.6",
+        "google/cloud-firestore": "^1.14"
+    },
+	"scripts": {
+		"post-update-cmd": [
+			"@composer dump-autoload"
+		]
+	}
+}
