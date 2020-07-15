@@ -4,7 +4,6 @@ use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\QuerySnapshot;
-use Kreait\Firebase\Factory;
 
 /**
  * Class App
@@ -16,27 +15,19 @@ class App
 	/**
 	 * Firestore Client instance.
 	 *
-	 * @var Google\Cloud\Firestore\FirestoreClient
+	 * @var FirestoreClient
 	 */
 	public $client;
 
-	/**
-	 * Prep our client.
-	 */
-	public function initialize()
-	{
-		// Use the SDK to connect a Firestore Client
-		$this->client = (new Factory)->createFirestore()->database();
-
-		$this->expectType($this->client, FirestoreClient::class);
-	}
+	public function __construct(FirestoreClient $firestoreClient)
+    {
+        $this->client = $firestoreClient;
+    }
 
 	/**
 	 * Run our app.
-	 *
-	 * @return string  Output for the browser/CLI
 	 */
-	public function run(): string
+	public function run()
 	{
 		// Get our CollectionReference
 		$collection = $this->client->collection('users');
@@ -71,15 +62,16 @@ class App
 		$trace  = debug_backtrace();
 		print_r($trace);
 
-		return print_r($row, true);
+		print_r($row, true);
 	}
 
-	/**
-	 * Checks a variable for expected type and throws on failure.
-	 *
-	 * @return string  Output for the browser/CLI
-	 */
-	protected function expectType(&$var, string $type)
+    /**
+     * Checks a variable for expected type and throws on failure.
+     *
+     * @param mixed $var
+     * @param string $type
+     */
+	protected function expectType($var, $type)
 	{
 		if (! is_object($var))
 		{
