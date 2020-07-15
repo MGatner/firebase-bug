@@ -8,3 +8,10 @@ the [API Console Credentials Page](https://console.cloud.google.com/projectselec
 
 `App` expects a Collection in the Firestore database called "users" with at least one Document.
 
+```bash
+### Running in a terminal window
+php src/index.php
+
+### Running in a browser
+php -S 127.0.0.1:8000 -t src
+```

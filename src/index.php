@@ -1,16 +1,9 @@
 <?php
 
-/**
- * index.php
- *
- * Bootstrap the project
- */
+require __DIR__.'/bootstrap.php';
 
-chdir(__DIR__);
-$app = require __DIR__ . '/bootstrap.php';
-require ROOTPATH . 'vendor/autoload.php';
+use Google\Cloud\Firestore\FirestoreClient;
 
-$app->initialize();
-echo $app->run() . PHP_EOL;
+$app = new App(new FirestoreClient());
 
-exit(0);
+$app->run();
